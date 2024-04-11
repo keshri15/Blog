@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Blogs{% endblock title %}
+
+{% block body %}
+
+    <div class="container">
+        <p style="display: flex; justify-content: center;  font-size: 40px;">Read our Regular Blogs</p>
+    </div>
+
+    <div class="container-fluid">
+        <div class="container">
+            {% for obj in Regular_BlogObj %}
+            <div class="card m-4 shadow-lg">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="/media/{{obj.image}}" class="img-fluid rounded-start" alt="..." style=" width: 48vh; height: 48vh;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{obj.title}}</h5>
+                            {{obj.id}}
+                            <h6 class="text-primary">Author: {{obj.author}}</h6>
+                            <p class="card-text">{{obj.content|safe|truncatechars:120}}</p>
+                            <p class="card-text"><small class="text-body-secondary">{{obj.post_date}}</small></p>
+                            <a href="{% url 'view_blog' obj.id %}" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

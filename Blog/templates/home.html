@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+
+    <div class="container-fluid shadow-lg p-0 m-0" style="background:rgb(119, 169, 202); background: linear-gradient(90deg, rgb(129, 217, 227) 0%, rgb(23, 107, 180) 35%, rgb(2, 82, 94) 100%); height: 56vh;">
+    <img class="shadow-lg" src="/static/img/home.webp"  alt="" style="height: 45vh; width:30em; position: absolute; top: 5.5em; left: 50em;">
+    </div>
+
+    <div>
+        <p style="position: absolute; top: 20vh; left: 3em; right: 30em; font-size:x-large; text-shadow: 0px 5px 6px;"> <b >Welcome to MindfulEd, a hub of information and learning for curious minds of all ages. Our diverse range of articles and resources cover an array of subjects, ensuring there's something here for everyone. From insightful articles to expert tips, MindfulEd is your companion in the journey of discovery. Join us and embark on an enriching educational adventure that knows no bounds.</b></p>
+    </div>
+
+
+    <div class="container my-3">
+        <p style="display: flex; justify-content: center;  font-size: 40px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Read our Popular Blogs</p>
+    </div>
+
+    <div class="container-fluid">
+        <div class="container"> 
+            {% for obj in Popular_BlogObj %}
+            <div class="card m-4 shadow-lg">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="/media/{{obj.image}}" class="img-fluid rounded-start" alt="..." style=" height: 48vh;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{obj.title}}</h5>
+                            {{obj.id}}
+                            <h6 class="text-primary">Author: {{obj.author}}</h6>
+                            <p class="card-text">{{obj.content|safe|truncatechars:120}}</p>
+                            <p class="card-text"><small class="text-body-secondary">{{obj.post_date}}</small></p>
+                            <a href="{% url 'show_blog' obj.id %}" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock body %}
